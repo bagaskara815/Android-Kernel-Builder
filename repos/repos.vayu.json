@@ -1,0 +1,49 @@
+[
+  {
+  "kernelSource": {
+    "name": "Derp",
+    "repo": "https://github.com/bagaskara815/kernel_xiaomi_vayu",
+    "branch": "base",
+    "device": "vayu",
+    "defconfig": "vayu_defconfig"
+  },
+  "withKernelSU": true,
+  "toolchains": [
+    {
+    "repo": "https://github.com/mvaisakh/gcc-arm64",
+    "branch": "gcc-master",
+    "name": "gcc64",
+    "binPath": ["bin"]
+    },
+    {
+    "repo": "https://github.com/mvaisakh/gcc-arm",
+    "branch": "gcc-master",
+    "name": "gcc32",
+    "binPath": ["bin"]
+    },
+    {
+      "url": "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r498229b.tar.gz",
+      "name": "clang",
+      "binPath": ["bin"]
+    }
+  ],
+  "ccache": true,
+  "params": {
+    "ARCH": "arm64",
+    "CC": "clang",
+      "externalCommand": {
+      "CLANG_TRIPLE": "aarch64-elf-",
+      "CROSS_COMPILE": "aarch64-elf-",
+      "CROSS_COMPILE_ARM32": "arm-eabi-",
+      "LLVM": "1"
+    }
+  },
+  "AnyKernel3": {
+    "use": true,
+    "release": true,
+    "repo": "https://github.com/bagaskara815/AnyKernel3",
+    "branch": "vayu"
+  }
+}
+
+]
