@@ -7,36 +7,22 @@ import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import Image from 'next/image'
 
 const { Header, Content, Footer, Sider } = Layout;
+import { useRouter } from 'next/navigation'
 
-const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
+const items1: MenuProps['items'] = ['/about', '2', '3'].map((key) => ({
   key,
   label: `nav ${key}`,
 }));
 
-const items2: MenuProps['items'] = [UserOutlined, LaptopOutlined, NotificationOutlined].map(
-  (icon, index) => {
-    const key = String(index + 1);
-
-    return {
-      key: `sub${key}`,
-      icon: React.createElement(icon),
-      label: `subnav ${key}`,
-
-      children: new Array(4).fill(null).map((_, j) => {
-        const subKey = index * 4 + j + 1;
-        return {
-          key: subKey,
-          label: `option${subKey}`,
-        };
-      }),
-    };
-  },
-);
-
 const App: React.FC = () => {
+
+  const router = useRouter()
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const handleClick = (e) => {
+    router.push(e)
+  }
 
   return (
     <Layout>
@@ -47,7 +33,7 @@ const App: React.FC = () => {
           height={50}
           alt="Picture of the author"
         />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} />
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']} items={items1} onClick={ handleClick }/>
       </Header>
       <Content style={{ padding: '0 50px' }}>
         Need router.
